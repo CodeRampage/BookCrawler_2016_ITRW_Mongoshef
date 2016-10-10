@@ -65,6 +65,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -78,6 +79,99 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\browser %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\man.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user %284%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MongoChefIcon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\5dd1fe29ad255693e072fd6aefaa03c6.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SANCTUM-BOOKS-LOGO-%282%29.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo-BookHub.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BC_BestPlace_V_gry_pos-Converted.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\more-symbols-3-1212205.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MongoChefIconCrqwler.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\879bd6e5542b9d66a78d29f476877f27.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\credit-card.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\robber-entering-by-a-window.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\thick-cross-mark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\door.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spiderweb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\admin-with-cogwheels.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download-business-statistics-symbol-of-a-graphic.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download-business-statistics-symbol-of-a-graphic %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\businessman.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\web-crawler.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opened-filled-door %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\opened-exit-door.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user %285%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user %287%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MongoChefIconRemake.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\colorful-books-wallpaper-background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\garbage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
