@@ -7,19 +7,88 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Oracle.ManagedDataAccess;
+//using LiveCharts; //Core of the library
+//using LiveCharts.WinForms; 
+using HtmlAgilityPack;
+
 
 namespace BookCrawler_2016_ITRW_Mongoshef
 {
     public partial class Form1 : Form
     {
+        //Instance Variables
         bool DashboardClicked = false;
         bool SystemAdminClicked = false;
         bool CrawlerClicked = false;
 
+        //Library Class instances
+        HtmlWeb crawler = new HtmlWeb();
+
+
+        //User instantiated classes
+        DataProcessor.Mongo mongo;
 
         public Form1()
         {
             InitializeComponent();
+
+            mongo = new DataProcessor.Mongo();
+        }
+
+
+        private async  void links()
+        {
+            string link = "https://www.goodreads.com/genres/new_releases/science-fiction";
+
+            var page = await Task.Factory.StartNew(() => crawler.Load(link));
+
+            var bookNodes = page.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[1]/div[2]/div[2]/div[4]/div[2]/div/div/div/div/a");
+
+            var booksList = bookNodes.Select(book => book.GetAttributeValue("href", string.Empty));
+
+            foreach(var book in booksList)
+            {
+                listBox1.Items.Add(book.ToString());
+
+                var bookPage = await Task.Factory.StartNew(() => crawler.Load("https://www.goodreads.com" + book.ToString()));
+
+                var bookNames = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/h1/text()");
+
+                var authorNames = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/div[1]/span[2]/a");
+
+                var bookStars = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/div[2]/span[3]/span");
+
+                var bookRatings = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/div[2]/a[2]/span");
+
+                var bookReviews = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/div[2]/a[3]/span/span");
+
+                var bookISBNS = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/div[4]/div[3]/div[1]/div[2]/div[2]/text()");
+
+                var bookISBNSCollection = bookISBNS.Select(coll => coll.InnerText);
+
+                var pageNums = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/div[4]/div[1]/span[2]");
+
+                var publishedDates = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/div[4]/div[2]/text()");
+
+                var bookLanguages = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/div[4]/div[3]/div[1]/div[3]/div[2]");
+
+                var bookSynopsis = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/div[3]/div/span[2]/text()");
+
+                var synopsisStrings = bookSynopsis.Select(coll => coll.InnerText);
+
+                BookMetaData data = new BookMetaData
+                {
+
+                };
+                
+           }
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            links();
         }
 
         private void btnSignInOption_MouseMove(object sender, MouseEventArgs e)
@@ -1040,5 +1109,7 @@ namespace BookCrawler_2016_ITRW_Mongoshef
                 }
             }
         }
+
+        
     }
 }
