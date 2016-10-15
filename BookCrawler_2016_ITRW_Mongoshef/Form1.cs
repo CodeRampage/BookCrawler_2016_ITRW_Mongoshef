@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Oracle.ManagedDataAccess;
+using Oracle.ManagedDataAccess.Client;
 //using LiveCharts; //Core of the library
 //using LiveCharts.WinForms; 
 using HtmlAgilityPack;
@@ -22,12 +22,16 @@ namespace BookCrawler_2016_ITRW_Mongoshef
         bool SystemAdminClicked = false;
         bool CrawlerClicked = false;
 
+        
+
         //Library Class instances
         HtmlWeb crawler = new HtmlWeb();
 
 
         //User instantiated classes
         DataProcessor.Mongo mongo;
+
+
 
         public Form1()
         {
@@ -49,38 +53,71 @@ namespace BookCrawler_2016_ITRW_Mongoshef
 
             foreach(var book in booksList)
             {
-                listBox1.Items.Add(book.ToString());
-
-                var bookPage = await Task.Factory.StartNew(() => crawler.Load("https://www.goodreads.com" + book.ToString()));
-
-                var bookNames = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/h1/text()");
-
-                var authorNames = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/div[1]/span[2]/a");
-
-                var bookStars = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/div[2]/span[3]/span");
-
-                var bookRatings = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/div[2]/a[2]/span");
-
-                var bookReviews = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/div[2]/a[3]/span/span");
-
-                var bookISBNS = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/div[4]/div[3]/div[1]/div[2]/div[2]/text()");
-
-                var bookISBNSCollection = bookISBNS.Select(coll => coll.InnerText);
-
-                var pageNums = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/div[4]/div[1]/span[2]");
-
-                var publishedDates = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/div[4]/div[2]/text()");
-
-                var bookLanguages = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/div[4]/div[3]/div[1]/div[3]/div[2]");
-
-                var bookSynopsis = bookPage.DocumentNode.SelectNodes("/html/body/div[1]/div[2]/div[3]/div[1]/div[4]/div[1]/div[2]/div[3]/div/span[2]/text()");
-
-                var synopsisStrings = bookSynopsis.Select(coll => coll.InnerText);
-
-                BookMetaData data = new BookMetaData
+                try
                 {
+                    listBox1.Items.Add(book.ToString());
 
-                };
+                    var bookPage = await Task.Factory.StartNew(() => crawler.Load("https://www.goodreads.com" + book.ToString()));
+
+                    var bookNames = bookPage.DocumentNode.SelectSingleNode("//*[@id=\"bookTitle\"]/text()").InnerText;
+
+                    var authorNames = bookPage.DocumentNode.SelectSingleNode("//*[@id=\"bookAuthors\"]/span[2]/a/span").InnerText;
+
+                    var bookStars = bookPage.DocumentNode.SelectSingleNode("//*[@id=\"bookMeta\"]/span[3]/span").InnerText;
+
+                    var bookRatings = bookPage.DocumentNode.SelectSingleNode("//*[@id=\"bookMeta\"]/a[2]/span").InnerText;
+
+                    var bookReviews = bookPage.DocumentNode.SelectSingleNode("//*[@id=\"bookMeta\"]/a[3]/span/span").InnerText;
+
+                    var bookISBNS = bookPage.DocumentNode.SelectNodes("//*[@id=\"bookDataBox\"]/div[2]/div[2]/text()");
+
+                    var bookISBNSCollection = bookISBNS.Select(coll => coll.InnerText);
+
+                    string isbnStrings = "";
+
+                    foreach (var isbn in bookISBNSCollection)
+                    {
+                        isbnStrings += isbn;
+                    }
+
+                    var pageNums = bookPage.DocumentNode.SelectSingleNode("//*[@id=\"details\"]/div[1]/span[2]").InnerText;
+
+                    var publishedDates = bookPage.DocumentNode.SelectSingleNode("//*[@id=\"details\"]/div[2]").InnerText;
+
+                    string bookLanguages = "";
+                    if (bookPage.DocumentNode.SelectSingleNode("//*[@id=\"bookDataBox\"]/div[3]/div[2]").InnerText != null)
+                        bookLanguages = bookPage.DocumentNode.SelectSingleNode("//*[@id=\"bookDataBox\"]/div[3]/div[2]").InnerText;
+                    else if (bookPage.DocumentNode.SelectSingleNode("//*[@id=\"bookDataBox\"]/div[3]/div[2]").InnerText != null)
+                        bookLanguages = bookPage.DocumentNode.SelectSingleNode("//*[@id=\"bookDataBox\"]/div[2]/div[2]").InnerText;
+                    else
+                        bookLanguages = "Unknown";
+
+
+                    var bookSynopsis = bookPage.DocumentNode.SelectNodes("//*[@id=\"description\"]/span[1]/text()");
+
+                    var synopsisStrings = bookSynopsis.Select(coll => coll.InnerText);
+
+                    BookMetaData data = new BookMetaData
+                    {
+                        Name = bookNames,
+                        Author = authorNames,
+                        Stars = bookStars,
+                        Ratings = bookRatings,
+                        Reviews = bookReviews,
+                        ISBN = isbnStrings,
+                        Pages = pageNums,
+                        PublishDate = publishedDates,
+                        Language = bookLanguages,
+                        Synopsis = synopsisStrings,
+                        Link = link
+                    };
+
+                    mongo.insertRecord(data);
+                }
+                catch
+                {
+                    
+                }
                 
            }
 
@@ -491,25 +528,99 @@ namespace BookCrawler_2016_ITRW_Mongoshef
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
-            pnlDashBoard.Visible = true;
-            pnlHome.Visible = false;
-
-            pnlDashBoardCompo.Visible = false;
-            pnlAdministrator.Visible = false;
-            pnlCrawler.Visible = false;
-
-            txtConfirmPass.Text = "Confirm password";
+            //txtConfirmPass.Text = "Confirm password";
             txtFirstName.Text = "First name";
             txtLastName.Text = "Last name";
-            txtLoginPassword.Text = "Password";
-            txtLoginUserName.Text = "User name";
+            //txtLoginPassword.Text = "Password";
+            //txtLoginUserName.Text = "User name";
             txtPasswword.Text = "Password";
             txtRegConfirmPass.Text = "Confirm password";
             txtRegFirstName.Text = "First name";
             txtRegLastName.Text = "Last name";
             txtRegPassword.Text = "Password";
             txtRegUserName.Text = "User name";
-            txtUserName.Text = "User name";            
+            txtUserName.Text = "User name";
+
+            string username = txtLoginUserName.Text;
+            string pass = txtLoginPassword.Text;
+
+            OracleConnection conn = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=196.253.61.51)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=ORCL))); User Id = MongoChef; Password = mongochef");
+            OracleCommand cmd;
+
+            conn.Open();
+
+            using (conn)
+            {
+                cmd = new OracleCommand("USER_LOGIN", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.Add("USERN", OracleDbType.Varchar2, ParameterDirection.Input).Value = username;
+                cmd.Parameters.Add("PASS", OracleDbType.Varchar2, ParameterDirection.Input).Value = pass;
+                cmd.Parameters.Add("FIRSTN", OracleDbType.Varchar2, 200).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("LASTN", OracleDbType.Varchar2, 200).Direction = ParameterDirection.Output;
+                int status = cmd.ExecuteNonQuery();
+
+
+                if (cmd.Parameters["FIRSTN"].Value.ToString() != "null")
+                {
+                    pnlDashBoard.Visible = true;
+                    pnlHome.Visible = false;
+                    pnlDashBoardCompo.Visible = false;
+                    pnlAdministrator.Visible = false;
+                    pnlCrawler.Visible = false;
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect Username or Password.","Login Error",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            mongo.getCollections();
+        }
+
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            string first = txtRegFirstName.Text;
+            string last = txtRegLastName.Text;
+            string username = txtRegUserName.Text;
+            string pass = txtRegPassword.Text;
+            string confirm = txtRegConfirmPass.Text;
+
+            if (pass == confirm)
+            {
+                OracleConnection conn = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=196.253.61.51)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=ORCL))); User Id = MongoChef; Password = mongochef");
+                OracleCommand cmd;
+
+                conn.Open();
+
+                using (conn)
+                {
+                    cmd = new OracleCommand("INSERT_SYS_USER", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("USERNAME", OracleDbType.Varchar2, ParameterDirection.Input).Value = username;
+                    cmd.Parameters.Add("PASSWORD", OracleDbType.Varchar2, ParameterDirection.Input).Value = pass;
+                    cmd.Parameters.Add("FNAME", OracleDbType.Varchar2, ParameterDirection.Input).Value = first;
+                    cmd.Parameters.Add("LNAME", OracleDbType.Varchar2, ParameterDirection.Input).Value = last;
+
+                    int status = cmd.ExecuteNonQuery();
+
+                    if (status > 0)
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Passwords do not match","Passwords Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            
         }
 
         private void btnSignOut_MouseMove(object sender, MouseEventArgs e)
@@ -1108,8 +1219,6 @@ namespace BookCrawler_2016_ITRW_Mongoshef
                     txtConfirmPass.ForeColor = Color.Black;
                 }
             }
-        }
-
-        
+        }        
     }
 }

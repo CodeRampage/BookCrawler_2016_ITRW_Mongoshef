@@ -40,6 +40,17 @@
             this.btnCrawler = new System.Windows.Forms.PictureBox();
             this.lblSignOut = new System.Windows.Forms.Label();
             this.btnSignOut = new System.Windows.Forms.PictureBox();
+            this.pnlCrawler = new System.Windows.Forms.Panel();
+            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.pictureBox14 = new System.Windows.Forms.PictureBox();
+            this.pictureBox15 = new System.Windows.Forms.PictureBox();
+            this.pictureBox16 = new System.Windows.Forms.PictureBox();
+            this.pictureBox17 = new System.Windows.Forms.PictureBox();
+            this.pictureBox18 = new System.Windows.Forms.PictureBox();
+            this.pictureBox19 = new System.Windows.Forms.PictureBox();
             this.pnlAdministrator = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnAcceptNewReg = new System.Windows.Forms.PictureBox();
@@ -74,14 +85,6 @@
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.pnlCrawler = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.pictureBox14 = new System.Windows.Forms.PictureBox();
-            this.pictureBox15 = new System.Windows.Forms.PictureBox();
-            this.pictureBox16 = new System.Windows.Forms.PictureBox();
-            this.pictureBox17 = new System.Windows.Forms.PictureBox();
-            this.pictureBox18 = new System.Windows.Forms.PictureBox();
-            this.pictureBox19 = new System.Windows.Forms.PictureBox();
             this.pnlHome = new System.Windows.Forms.Panel();
             this.pnlSignIn = new System.Windows.Forms.Panel();
             this.lblSignIn = new System.Windows.Forms.Label();
@@ -107,9 +110,7 @@
             this.txtRegLastName = new System.Windows.Forms.TextBox();
             this.txtRegFirstName = new System.Windows.Forms.TextBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.pnlDashBoard.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
@@ -117,6 +118,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBoxDasboard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCrawler)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSignOut)).BeginInit();
+            this.pnlCrawler.SuspendLayout();
+            this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
             this.pnlAdministrator.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAcceptNewReg)).BeginInit();
@@ -139,14 +148,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
-            this.pnlCrawler.SuspendLayout();
-            this.panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).BeginInit();
             this.pnlHome.SuspendLayout();
             this.pnlSignIn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSignIn)).BeginInit();
@@ -297,6 +298,124 @@
             this.btnSignOut.Click += new System.EventHandler(this.btnSignOut_Click_1);
             this.btnSignOut.MouseLeave += new System.EventHandler(this.btnSignOut_MouseLeave_1);
             this.btnSignOut.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnSignOut_MouseMove_1);
+            // 
+            // pnlCrawler
+            // 
+            this.pnlCrawler.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlCrawler.AutoScroll = true;
+            this.pnlCrawler.BackColor = System.Drawing.Color.GhostWhite;
+            this.pnlCrawler.Controls.Add(this.button2);
+            this.pnlCrawler.Controls.Add(this.listBox2);
+            this.pnlCrawler.Controls.Add(this.listBox1);
+            this.pnlCrawler.Controls.Add(this.button1);
+            this.pnlCrawler.Controls.Add(this.panel8);
+            this.pnlCrawler.Location = new System.Drawing.Point(0, 175);
+            this.pnlCrawler.Name = "pnlCrawler";
+            this.pnlCrawler.Size = new System.Drawing.Size(984, 456);
+            this.pnlCrawler.TabIndex = 10;
+            this.pnlCrawler.Visible = false;
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(505, 24);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(373, 277);
+            this.listBox2.TabIndex = 27;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(36, 28);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(373, 277);
+            this.listBox1.TabIndex = 26;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(36, 357);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Crawl";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.White;
+            this.panel8.Controls.Add(this.pictureBox14);
+            this.panel8.Controls.Add(this.pictureBox15);
+            this.panel8.Controls.Add(this.pictureBox16);
+            this.panel8.Controls.Add(this.pictureBox17);
+            this.panel8.Controls.Add(this.pictureBox18);
+            this.panel8.Controls.Add(this.pictureBox19);
+            this.panel8.Location = new System.Drawing.Point(0, 638);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(964, 175);
+            this.panel8.TabIndex = 24;
+            // 
+            // pictureBox14
+            // 
+            this.pictureBox14.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources._879bd6e5542b9d66a78d29f476877f27;
+            this.pictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox14.Location = new System.Drawing.Point(305, 86);
+            this.pictureBox14.Name = "pictureBox14";
+            this.pictureBox14.Size = new System.Drawing.Size(79, 70);
+            this.pictureBox14.TabIndex = 20;
+            this.pictureBox14.TabStop = false;
+            // 
+            // pictureBox15
+            // 
+            this.pictureBox15.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources.BC_BestPlace_V_gry_pos_Converted;
+            this.pictureBox15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox15.Location = new System.Drawing.Point(401, 86);
+            this.pictureBox15.Name = "pictureBox15";
+            this.pictureBox15.Size = new System.Drawing.Size(79, 70);
+            this.pictureBox15.TabIndex = 19;
+            this.pictureBox15.TabStop = false;
+            // 
+            // pictureBox16
+            // 
+            this.pictureBox16.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources.Logo_BookHub;
+            this.pictureBox16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox16.Location = new System.Drawing.Point(689, 86);
+            this.pictureBox16.Name = "pictureBox16";
+            this.pictureBox16.Size = new System.Drawing.Size(79, 70);
+            this.pictureBox16.TabIndex = 18;
+            this.pictureBox16.TabStop = false;
+            // 
+            // pictureBox17
+            // 
+            this.pictureBox17.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources.SANCTUM_BOOKS_LOGO__2_;
+            this.pictureBox17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox17.Location = new System.Drawing.Point(593, 86);
+            this.pictureBox17.Name = "pictureBox17";
+            this.pictureBox17.Size = new System.Drawing.Size(79, 70);
+            this.pictureBox17.TabIndex = 17;
+            this.pictureBox17.TabStop = false;
+            // 
+            // pictureBox18
+            // 
+            this.pictureBox18.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources._5dd1fe29ad255693e072fd6aefaa03c6;
+            this.pictureBox18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox18.Location = new System.Drawing.Point(497, 86);
+            this.pictureBox18.Name = "pictureBox18";
+            this.pictureBox18.Size = new System.Drawing.Size(79, 70);
+            this.pictureBox18.TabIndex = 16;
+            this.pictureBox18.TabStop = false;
+            // 
+            // pictureBox19
+            // 
+            this.pictureBox19.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources.MongoChefIcon2;
+            this.pictureBox19.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox19.Location = new System.Drawing.Point(792, 35);
+            this.pictureBox19.Name = "pictureBox19";
+            this.pictureBox19.Size = new System.Drawing.Size(135, 121);
+            this.pictureBox19.TabIndex = 15;
+            this.pictureBox19.TabStop = false;
             // 
             // pnlAdministrator
             // 
@@ -709,97 +828,6 @@
             this.pictureBox11.TabIndex = 15;
             this.pictureBox11.TabStop = false;
             // 
-            // pnlCrawler
-            // 
-            this.pnlCrawler.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlCrawler.AutoScroll = true;
-            this.pnlCrawler.BackColor = System.Drawing.Color.GhostWhite;
-            this.pnlCrawler.Controls.Add(this.listBox2);
-            this.pnlCrawler.Controls.Add(this.listBox1);
-            this.pnlCrawler.Controls.Add(this.button1);
-            this.pnlCrawler.Controls.Add(this.panel8);
-            this.pnlCrawler.Location = new System.Drawing.Point(0, 175);
-            this.pnlCrawler.Name = "pnlCrawler";
-            this.pnlCrawler.Size = new System.Drawing.Size(984, 456);
-            this.pnlCrawler.TabIndex = 10;
-            this.pnlCrawler.Visible = false;
-            // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.White;
-            this.panel8.Controls.Add(this.pictureBox14);
-            this.panel8.Controls.Add(this.pictureBox15);
-            this.panel8.Controls.Add(this.pictureBox16);
-            this.panel8.Controls.Add(this.pictureBox17);
-            this.panel8.Controls.Add(this.pictureBox18);
-            this.panel8.Controls.Add(this.pictureBox19);
-            this.panel8.Location = new System.Drawing.Point(0, 638);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(964, 175);
-            this.panel8.TabIndex = 24;
-            // 
-            // pictureBox14
-            // 
-            this.pictureBox14.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources._879bd6e5542b9d66a78d29f476877f27;
-            this.pictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox14.Location = new System.Drawing.Point(305, 86);
-            this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(79, 70);
-            this.pictureBox14.TabIndex = 20;
-            this.pictureBox14.TabStop = false;
-            // 
-            // pictureBox15
-            // 
-            this.pictureBox15.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources.BC_BestPlace_V_gry_pos_Converted;
-            this.pictureBox15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox15.Location = new System.Drawing.Point(401, 86);
-            this.pictureBox15.Name = "pictureBox15";
-            this.pictureBox15.Size = new System.Drawing.Size(79, 70);
-            this.pictureBox15.TabIndex = 19;
-            this.pictureBox15.TabStop = false;
-            // 
-            // pictureBox16
-            // 
-            this.pictureBox16.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources.Logo_BookHub;
-            this.pictureBox16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox16.Location = new System.Drawing.Point(689, 86);
-            this.pictureBox16.Name = "pictureBox16";
-            this.pictureBox16.Size = new System.Drawing.Size(79, 70);
-            this.pictureBox16.TabIndex = 18;
-            this.pictureBox16.TabStop = false;
-            // 
-            // pictureBox17
-            // 
-            this.pictureBox17.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources.SANCTUM_BOOKS_LOGO__2_;
-            this.pictureBox17.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox17.Location = new System.Drawing.Point(593, 86);
-            this.pictureBox17.Name = "pictureBox17";
-            this.pictureBox17.Size = new System.Drawing.Size(79, 70);
-            this.pictureBox17.TabIndex = 17;
-            this.pictureBox17.TabStop = false;
-            // 
-            // pictureBox18
-            // 
-            this.pictureBox18.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources._5dd1fe29ad255693e072fd6aefaa03c6;
-            this.pictureBox18.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox18.Location = new System.Drawing.Point(497, 86);
-            this.pictureBox18.Name = "pictureBox18";
-            this.pictureBox18.Size = new System.Drawing.Size(79, 70);
-            this.pictureBox18.TabIndex = 16;
-            this.pictureBox18.TabStop = false;
-            // 
-            // pictureBox19
-            // 
-            this.pictureBox19.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources.MongoChefIcon2;
-            this.pictureBox19.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox19.Location = new System.Drawing.Point(792, 35);
-            this.pictureBox19.Name = "pictureBox19";
-            this.pictureBox19.Size = new System.Drawing.Size(135, 121);
-            this.pictureBox19.TabIndex = 15;
-            this.pictureBox19.TabStop = false;
-            // 
             // pnlHome
             // 
             this.pnlHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -1099,31 +1127,15 @@
             this.pictureBox5.TabIndex = 1;
             this.pictureBox5.TabStop = false;
             // 
-            // button1
+            // button2
             // 
-            this.button1.Location = new System.Drawing.Point(803, 358);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(36, 28);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(373, 277);
-            this.listBox1.TabIndex = 26;
-            // 
-            // listBox2
-            // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(505, 24);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(373, 277);
-            this.listBox2.TabIndex = 27;
+            this.button2.Location = new System.Drawing.Point(806, 350);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 28;
+            this.button2.Text = "Fetch Data";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
@@ -1149,6 +1161,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBoxDasboard)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCrawler)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSignOut)).EndInit();
+            this.pnlCrawler.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
             this.pnlAdministrator.ResumeLayout(false);
             this.pnlAdministrator.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -1173,14 +1193,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            this.pnlCrawler.ResumeLayout(false);
-            this.panel8.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox17)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox18)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox19)).EndInit();
             this.pnlHome.ResumeLayout(false);
             this.pnlSignIn.ResumeLayout(false);
             this.pnlSignIn.PerformLayout();
@@ -1283,6 +1295,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Button button2;
     }
 }
 
