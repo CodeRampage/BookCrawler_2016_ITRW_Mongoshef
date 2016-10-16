@@ -22,16 +22,11 @@ namespace BookCrawler_2016_ITRW_Mongoshef
         bool SystemAdminClicked = false;
         bool CrawlerClicked = false;
 
-        
-
         //Library Class instances
         HtmlWeb crawler = new HtmlWeb();
 
-
         //User instantiated classes
         DataProcessor.Mongo mongo;
-
-
 
         public Form1()
         {
@@ -39,8 +34,7 @@ namespace BookCrawler_2016_ITRW_Mongoshef
 
             mongo = new DataProcessor.Mongo();
         }
-
-
+        
         private async  void links()
         {
             string link = "https://www.goodreads.com/genres/new_releases/science-fiction";
@@ -69,8 +63,8 @@ namespace BookCrawler_2016_ITRW_Mongoshef
 
                     var bookReviews = bookPage.DocumentNode.SelectSingleNode("//*[@id=\"bookMeta\"]/a[3]/span/span").InnerText;
 
-                    var bookISBNS = bookPage.DocumentNode.SelectNodes("//*[@id=\"bookDataBox\"]/div[2]/div[2]/text()");
-
+                    var bookISBNS = bookPage.DocumentNode.SelectNodes("//*[@id=\"bookDataBox\"]/div[2]/div[2]/span/span");
+                    
                     var bookISBNSCollection = bookISBNS.Select(coll => coll.InnerText);
 
                     string isbnStrings = "";
@@ -91,7 +85,6 @@ namespace BookCrawler_2016_ITRW_Mongoshef
                         bookLanguages = bookPage.DocumentNode.SelectSingleNode("//*[@id=\"bookDataBox\"]/div[2]/div[2]").InnerText;
                     else
                         bookLanguages = "Unknown";
-
 
                     var bookSynopsis = bookPage.DocumentNode.SelectNodes("//*[@id=\"description\"]/span[1]/text()");
 
@@ -117,10 +110,8 @@ namespace BookCrawler_2016_ITRW_Mongoshef
                 catch
                 {
                     
-                }
-                
+                } 
            }
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -528,11 +519,8 @@ namespace BookCrawler_2016_ITRW_Mongoshef
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
-            //txtConfirmPass.Text = "Confirm password";
             txtFirstName.Text = "First name";
             txtLastName.Text = "Last name";
-            //txtLoginPassword.Text = "Password";
-            //txtLoginUserName.Text = "User name";
             txtPasswword.Text = "Password";
             txtRegConfirmPass.Text = "Confirm password";
             txtRegFirstName.Text = "First name";
@@ -580,7 +568,7 @@ namespace BookCrawler_2016_ITRW_Mongoshef
             mongo.getCollections();
         }
 
-        private void btnAccept_Click(object sender, EventArgs e)
+        private void btnAccept_Click_1(object sender, EventArgs e)
         {
             string first = txtRegFirstName.Text;
             string last = txtRegLastName.Text;
@@ -618,9 +606,8 @@ namespace BookCrawler_2016_ITRW_Mongoshef
             }
             else
             {
-                MessageBox.Show("Passwords do not match","Passwords Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Passwords do not match", "Passwords Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
         }
 
         private void btnSignOut_MouseMove(object sender, MouseEventArgs e)
@@ -1219,6 +1206,6 @@ namespace BookCrawler_2016_ITRW_Mongoshef
                     txtConfirmPass.ForeColor = Color.Black;
                 }
             }
-        }        
+        }
     }
 }
