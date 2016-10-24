@@ -8,8 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
-//using LiveCharts; //Core of the library
-//using LiveCharts.WinForms; 
+using LiveCharts; //Core of the library
+using LiveCharts.WinForms; 
 using HtmlAgilityPack;
 
 
@@ -28,6 +28,9 @@ namespace BookCrawler_2016_ITRW_Mongoshef
         //User instantiated classes
         DataProcessor.Mongo mongo;
 
+        private static OracleCommand cmd;
+        private static OracleConnection conn;
+
         public Form1()
         {
             InitializeComponent();
@@ -35,9 +38,11 @@ namespace BookCrawler_2016_ITRW_Mongoshef
             mongo = new DataProcessor.Mongo();
         }
         
-        private async  void links()
+        private async  void links(string genre, string status)
         {
-            string link = "https://www.goodreads.com/genres/new_releases/science-fiction";
+            //string link = "https://www.goodreads.com/genres/"+status+"/"+genre;
+            string link = "https://www.goodreads.com/genres/new_releases/Science-Fiction";
+
 
             var page = await Task.Factory.StartNew(() => crawler.Load(link));
 
@@ -116,7 +121,320 @@ namespace BookCrawler_2016_ITRW_Mongoshef
 
         private void button1_Click(object sender, EventArgs e)
         {
-            links();
+            string genre = "";
+            string status = "";
+            try
+            {
+                 genre = cmbGenre.SelectedItem.ToString();
+                 status = cmbStatus.SelectedItem.ToString();
+            }
+            catch
+            {
+
+            }
+            
+
+            genre = genre.ToLower();
+            genre.Replace(' ', '_');
+
+            status = status.ToLower();
+            status.Replace(' ', '_');
+
+            if(status == "new releases")
+            {
+                status = "new_releases";
+            }
+            else if(status == "most read")
+            {
+                status = "most_read";
+            }
+            
+
+            links(genre, status);
+        }
+
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            txtFirstName.Text = "First name";
+            txtLastName.Text = "Last name";
+            txtPasswword.Text = "Password";
+            txtRegConfirmPass.Text = "Confirm password";
+            txtRegFirstName.Text = "First name";
+            txtRegLastName.Text = "Last name";
+            txtRegPassword.Text = "Password";
+            txtRegUserName.Text = "User name";
+            txtUserName.Text = "User name";
+
+            string username = txtLoginUserName.Text;
+            string pass = txtLoginPassword.Text;
+
+            OracleConnection conn = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=196.253.61.51)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=ORCL))); User Id = MongoChef; Password = mongochef");
+            OracleCommand cmd;
+
+            conn.Open();
+
+            using (conn)
+            {
+                cmd = new OracleCommand("USER_LOGIN", conn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.Parameters.Add("USERN", OracleDbType.Varchar2, ParameterDirection.Input).Value = username;
+                cmd.Parameters.Add("USERNOUT", OracleDbType.Varchar2, 200).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("PASS", OracleDbType.Varchar2, ParameterDirection.Input).Value = pass;
+                cmd.Parameters.Add("PASSOUT", OracleDbType.Varchar2, 200).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("FIRSTN", OracleDbType.Varchar2, 200).Direction = ParameterDirection.Output;
+                cmd.Parameters.Add("LASTN", OracleDbType.Varchar2, 200).Direction = ParameterDirection.Output;
+                int status = cmd.ExecuteNonQuery();
+
+                if (cmd.Parameters["USERNOUT"].Value.ToString().ToUpper() == username.ToUpper() && cmd.Parameters["PASSOUT"].Value.ToString()==pass) 
+                {
+                    pnlDashBoard.Visible = true;
+                    pnlHome.Visible = false;
+                    pnlDashBoardCompo.Visible = false;
+                    pnlAdministrator.Visible = false;
+                    pnlCrawler.Visible = false;
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect Username or Password.", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            mongo.getCollections();
+        }
+
+        private void btnAccept_Click_1(object sender, EventArgs e)
+        {
+            string first = txtRegFirstName.Text;
+            string last = txtRegLastName.Text;
+            string username = txtRegUserName.Text;
+            string pass = txtRegPassword.Text;
+            string confirm = txtRegConfirmPass.Text;
+
+            if (pass == confirm)
+            {
+                OracleConnection conn = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=196.253.61.51)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=ORCL))); User Id = MongoChef; Password = mongochef");
+                OracleCommand cmd;
+
+                conn.Open();
+
+                using (conn)
+                {
+                    cmd = new OracleCommand("INSERT_SYS_USER", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("USERNAME", OracleDbType.Varchar2, ParameterDirection.Input).Value = username;
+                    cmd.Parameters.Add("PASSWORD", OracleDbType.Varchar2, ParameterDirection.Input).Value = pass;
+                    cmd.Parameters.Add("FNAME", OracleDbType.Varchar2, ParameterDirection.Input).Value = first;
+                    cmd.Parameters.Add("LNAME", OracleDbType.Varchar2, ParameterDirection.Input).Value = last;
+
+                    int status = cmd.ExecuteNonQuery();
+
+                    if (status > 0)
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Passwords do not match", "Passwords Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnGenerate_Click(object sender, EventArgs e)
+        {
+            getPageNumbers();            
+            getBookRatings();
+            getReviews();
+            getStars();
+        }
+
+        private void getPageNumbers()
+        {
+            conn = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=196.253.61.51)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=ORCL))); User Id = MongoChef; Password = mongochef");
+            conn.Open();
+
+            using (conn)
+            {
+                try
+                {
+                    OracleCommand cmd = new OracleCommand();
+                    cmd.Connection = conn;
+                    cmd.CommandText = "select * from PAGE_NUMBERS_VIEW";
+                    cmd.CommandType = CommandType.Text;
+
+                    OracleDataReader dataReader = cmd.ExecuteReader();
+                    
+                    while (dataReader.Read())
+                    {
+                        chrtPageNums.Series["BookNames"].Points.AddXY(dataReader.GetString(1), Convert.ToInt32(dataReader.GetString(0)));
+                    }
+                    dataReader.Close();
+                    dataReader.Dispose();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+
+        public void getBookRatings()
+        {
+            conn = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=196.253.61.51)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=ORCL))); User Id = MongoChef; Password = mongochef");
+            conn.Open();
+
+            using (conn)
+            {
+                try
+                {
+                    OracleCommand cmd = new OracleCommand();
+                    cmd.Connection = conn;
+                    cmd.CommandText = "select * from BOOK_RATINGS_VIEW";
+                    cmd.CommandType = CommandType.Text;
+
+                    OracleDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        chrtRatings.Series["Series1"].Points.AddXY(dataReader.GetString(1), Convert.ToInt32(dataReader.GetString(0)));
+                    }
+                    dataReader.Close();
+                    dataReader.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public void getReviews()
+        {
+            conn = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=196.253.61.51)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=ORCL))); User Id = MongoChef; Password = mongochef");
+            conn.Open();
+
+            using (conn)
+            {
+                try
+                {
+                    OracleCommand cmd = new OracleCommand();
+                    cmd.Connection = conn;
+                    cmd.CommandText = "select * from REVIEW_COUNT_VIEW";
+                    cmd.CommandType = CommandType.Text;
+
+                    OracleDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        chrtReview.Series["Series1"].Points.AddXY(dataReader.GetString(1), Convert.ToInt32(dataReader.GetString(0)));
+                    }
+                    dataReader.Close();
+                    dataReader.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public void getStars()
+        {
+            conn = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=196.253.61.51)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=ORCL))); User Id = MongoChef; Password = mongochef");
+            conn.Open();
+
+            using (conn)
+            {
+                try
+                {
+                    OracleCommand cmd = new OracleCommand();
+                    cmd.Connection = conn;
+                    cmd.CommandText = "select * from BOOK_STARS_VIEW";
+                    cmd.CommandType = CommandType.Text;
+
+                    OracleDataReader dataReader = cmd.ExecuteReader();
+
+                    while (dataReader.Read())
+                    {
+                        chrtBookStars.Series["Series1"].Points.AddXY(dataReader.GetString(1), Convert.ToDouble(dataReader.GetString(0).Replace(".",",")));
+                    }
+                    dataReader.Close();
+                    dataReader.Dispose();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        private void btnAccept_Click(object sender, EventArgs e)
+        {
+            string first= txtRegFirstName.Text;
+            string last = txtRegLastName.Text;
+            string username = txtRegUserName.Text;
+            string pass = txtRegPassword.Text;
+            string confirm = txtRegConfirmPass.Text;
+
+            if (pass == confirm)
+            {
+                try
+                {
+                    OracleConnection conn = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=196.253.61.51)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=ORCL))); User Id = MongoChef; Password = mongochef");
+                    OracleCommand cmd;
+
+                    conn.Open();
+
+                    using (conn)
+                    {
+                        cmd = new OracleCommand("INSERT_SYS_USER", conn);
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.Add("USERNAME", OracleDbType.Varchar2, ParameterDirection.Input).Value = username;
+                        cmd.Parameters.Add("PASSWORD", OracleDbType.Varchar2, ParameterDirection.Input).Value = pass;
+                        cmd.Parameters.Add("FNAME", OracleDbType.Varchar2, ParameterDirection.Input).Value = first;
+                        cmd.Parameters.Add("LNAME", OracleDbType.Varchar2, ParameterDirection.Input).Value = last;
+                        int status = cmd.ExecuteNonQuery();
+
+                        if (status > 0)
+                        {
+                            MessageBox.Show("User insert successful!");
+                        }
+                    }
+                }
+                catch(Exception)
+                {
+                    ;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Passwords do not match!");
+            }
+            
         }
 
         private void btnSignInOption_MouseMove(object sender, MouseEventArgs e)
@@ -239,8 +557,7 @@ namespace BookCrawler_2016_ITRW_Mongoshef
             txtLoginUserName.Text = "Username";
             txtLoginPassword.Text = "Password";            
 
-            ////////////////////////////////////////////////////////////////////
-
+            
             txtRegFirstName.ForeColor = Color.Gray;
             txtRegLastName.ForeColor = Color.Gray;
             txtRegUserName.ForeColor = Color.Gray;
@@ -514,99 +831,6 @@ namespace BookCrawler_2016_ITRW_Mongoshef
                 {
                     txtRegConfirmPass.ForeColor = Color.Black;
                 }
-            }
-        }
-
-        private void btnSignIn_Click(object sender, EventArgs e)
-        {
-            txtFirstName.Text = "First name";
-            txtLastName.Text = "Last name";
-            txtPasswword.Text = "Password";
-            txtRegConfirmPass.Text = "Confirm password";
-            txtRegFirstName.Text = "First name";
-            txtRegLastName.Text = "Last name";
-            txtRegPassword.Text = "Password";
-            txtRegUserName.Text = "User name";
-            txtUserName.Text = "User name";
-
-            string username = txtLoginUserName.Text;
-            string pass = txtLoginPassword.Text;
-
-            OracleConnection conn = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=196.253.61.51)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=ORCL))); User Id = MongoChef; Password = mongochef");
-            OracleCommand cmd;
-
-            conn.Open();
-
-            using (conn)
-            {
-                cmd = new OracleCommand("USER_LOGIN", conn);
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                cmd.Parameters.Add("USERN", OracleDbType.Varchar2, ParameterDirection.Input).Value = username;
-                cmd.Parameters.Add("PASS", OracleDbType.Varchar2, ParameterDirection.Input).Value = pass;
-                cmd.Parameters.Add("FIRSTN", OracleDbType.Varchar2, 200).Direction = ParameterDirection.Output;
-                cmd.Parameters.Add("LASTN", OracleDbType.Varchar2, 200).Direction = ParameterDirection.Output;
-                int status = cmd.ExecuteNonQuery();
-
-
-                if (cmd.Parameters["FIRSTN"].Value.ToString() != "null")
-                {
-                    pnlDashBoard.Visible = true;
-                    pnlHome.Visible = false;
-                    pnlDashBoardCompo.Visible = false;
-                    pnlAdministrator.Visible = false;
-                    pnlCrawler.Visible = false;
-                }
-                else
-                {
-                    MessageBox.Show("Incorrect Username or Password.","Login Error",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                }
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            mongo.getCollections();
-        }
-
-        private void btnAccept_Click_1(object sender, EventArgs e)
-        {
-            string first = txtRegFirstName.Text;
-            string last = txtRegLastName.Text;
-            string username = txtRegUserName.Text;
-            string pass = txtRegPassword.Text;
-            string confirm = txtRegConfirmPass.Text;
-
-            if (pass == confirm)
-            {
-                OracleConnection conn = new OracleConnection("Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=196.253.61.51)(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=ORCL))); User Id = MongoChef; Password = mongochef");
-                OracleCommand cmd;
-
-                conn.Open();
-
-                using (conn)
-                {
-                    cmd = new OracleCommand("INSERT_SYS_USER", conn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("USERNAME", OracleDbType.Varchar2, ParameterDirection.Input).Value = username;
-                    cmd.Parameters.Add("PASSWORD", OracleDbType.Varchar2, ParameterDirection.Input).Value = pass;
-                    cmd.Parameters.Add("FNAME", OracleDbType.Varchar2, ParameterDirection.Input).Value = first;
-                    cmd.Parameters.Add("LNAME", OracleDbType.Varchar2, ParameterDirection.Input).Value = last;
-
-                    int status = cmd.ExecuteNonQuery();
-
-                    if (status > 0)
-                    {
-
-                    }
-                    else
-                    {
-
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Passwords do not match", "Passwords Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

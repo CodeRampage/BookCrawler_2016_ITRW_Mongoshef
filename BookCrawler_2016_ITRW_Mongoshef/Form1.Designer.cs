@@ -28,8 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pnlDashBoard = new System.Windows.Forms.Panel();
+            this.pnlDashBoardCompo = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
@@ -41,6 +61,10 @@
             this.lblSignOut = new System.Windows.Forms.Label();
             this.btnSignOut = new System.Windows.Forms.PictureBox();
             this.pnlCrawler = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
+            this.cmbGenre = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
@@ -78,14 +102,6 @@
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.txtFirstName = new System.Windows.Forms.TextBox();
-            this.pnlDashBoardCompo = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.pnlHome = new System.Windows.Forms.Panel();
             this.pnlSignIn = new System.Windows.Forms.Panel();
             this.lblSignIn = new System.Windows.Forms.Label();
@@ -111,11 +127,20 @@
             this.txtRegLastName = new System.Windows.Forms.TextBox();
             this.txtRegFirstName = new System.Windows.Forms.TextBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.chrtPageNums = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chrtRatings = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chrtBookStars = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btnGenerate = new System.Windows.Forms.Button();
+            this.chrtReview = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnlDashBoard.SuspendLayout();
+            this.pnlDashBoardCompo.SuspendLayout();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxAdmin)).BeginInit();
@@ -144,14 +169,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnEditUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdminAddUser)).BeginInit();
-            this.pnlDashBoardCompo.SuspendLayout();
-            this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.pnlHome.SuspendLayout();
             this.pnlSignIn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSignIn)).BeginInit();
@@ -164,23 +181,120 @@
             this.pnlAddNewUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAccept)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtPageNums)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtRatings)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtBookStars)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtReview)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlDashBoard
             // 
-            this.pnlDashBoard.Controls.Add(this.panel1);
             this.pnlDashBoard.Controls.Add(this.pnlCrawler);
-            this.pnlDashBoard.Controls.Add(this.pnlAdministrator);
             this.pnlDashBoard.Controls.Add(this.pnlDashBoardCompo);
+            this.pnlDashBoard.Controls.Add(this.panel1);
+            this.pnlDashBoard.Controls.Add(this.pnlAdministrator);
             this.pnlDashBoard.Location = new System.Drawing.Point(0, 0);
             this.pnlDashBoard.Name = "pnlDashBoard";
             this.pnlDashBoard.Size = new System.Drawing.Size(984, 631);
             this.pnlDashBoard.TabIndex = 15;
             this.pnlDashBoard.Visible = false;
             // 
+            // pnlDashBoardCompo
+            // 
+            this.pnlDashBoardCompo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlDashBoardCompo.AutoScroll = true;
+            this.pnlDashBoardCompo.BackColor = System.Drawing.Color.GhostWhite;
+            this.pnlDashBoardCompo.Controls.Add(this.chrtReview);
+            this.pnlDashBoardCompo.Controls.Add(this.chrtBookStars);
+            this.pnlDashBoardCompo.Controls.Add(this.chrtRatings);
+            this.pnlDashBoardCompo.Controls.Add(this.chrtPageNums);
+            this.pnlDashBoardCompo.Controls.Add(this.panel6);
+            this.pnlDashBoardCompo.Location = new System.Drawing.Point(0, 175);
+            this.pnlDashBoardCompo.Name = "pnlDashBoardCompo";
+            this.pnlDashBoardCompo.Size = new System.Drawing.Size(984, 456);
+            this.pnlDashBoardCompo.TabIndex = 9;
+            this.pnlDashBoardCompo.Visible = false;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.Controls.Add(this.pictureBox2);
+            this.panel6.Controls.Add(this.pictureBox7);
+            this.panel6.Controls.Add(this.pictureBox8);
+            this.panel6.Controls.Add(this.pictureBox9);
+            this.panel6.Controls.Add(this.pictureBox10);
+            this.panel6.Controls.Add(this.pictureBox11);
+            this.panel6.Location = new System.Drawing.Point(0, 1000);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(964, 175);
+            this.panel6.TabIndex = 24;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources._879bd6e5542b9d66a78d29f476877f27;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox2.Location = new System.Drawing.Point(305, 86);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(79, 70);
+            this.pictureBox2.TabIndex = 20;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources.BC_BestPlace_V_gry_pos_Converted;
+            this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox7.Location = new System.Drawing.Point(401, 86);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(79, 70);
+            this.pictureBox7.TabIndex = 19;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources.Logo_BookHub;
+            this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox8.Location = new System.Drawing.Point(689, 86);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(79, 70);
+            this.pictureBox8.TabIndex = 18;
+            this.pictureBox8.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources.SANCTUM_BOOKS_LOGO__2_;
+            this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox9.Location = new System.Drawing.Point(593, 86);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(79, 70);
+            this.pictureBox9.TabIndex = 17;
+            this.pictureBox9.TabStop = false;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources._5dd1fe29ad255693e072fd6aefaa03c6;
+            this.pictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox10.Location = new System.Drawing.Point(497, 86);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(79, 70);
+            this.pictureBox10.TabIndex = 16;
+            this.pictureBox10.TabStop = false;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources.MongoChefIcon2;
+            this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox11.Location = new System.Drawing.Point(792, 35);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(135, 121);
+            this.pictureBox11.TabIndex = 15;
+            this.pictureBox11.TabStop = false;
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(71)))), ((int)(((byte)(91)))));
+            this.panel1.Controls.Add(this.btnGenerate);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.pictureBox6);
             this.panel1.Controls.Add(this.label2);
@@ -312,8 +426,8 @@
             this.pnlCrawler.BackColor = System.Drawing.Color.GhostWhite;
             this.pnlCrawler.Controls.Add(this.label5);
             this.pnlCrawler.Controls.Add(this.label4);
-            this.pnlCrawler.Controls.Add(this.comboBox2);
-            this.pnlCrawler.Controls.Add(this.comboBox1);
+            this.pnlCrawler.Controls.Add(this.cmbStatus);
+            this.pnlCrawler.Controls.Add(this.cmbGenre);
             this.pnlCrawler.Controls.Add(this.button2);
             this.pnlCrawler.Controls.Add(this.listBox2);
             this.pnlCrawler.Controls.Add(this.listBox1);
@@ -324,6 +438,49 @@
             this.pnlCrawler.Size = new System.Drawing.Size(984, 456);
             this.pnlCrawler.TabIndex = 10;
             this.pnlCrawler.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(36, 356);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 13);
+            this.label5.TabIndex = 32;
+            this.label5.Text = "Status";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(36, 317);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(36, 13);
+            this.label4.TabIndex = 31;
+            this.label4.Text = "Genre";
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Items.AddRange(new object[] {
+            "New Releases",
+            "Most Read"});
+            this.cmbStatus.Location = new System.Drawing.Point(78, 355);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(193, 21);
+            this.cmbStatus.TabIndex = 30;
+            // 
+            // cmbGenre
+            // 
+            this.cmbGenre.FormattingEnabled = true;
+            this.cmbGenre.Items.AddRange(new object[] {
+            "Art",
+            "Business",
+            "Crime",
+            "Religion",
+            "Science-Fiction"});
+            this.cmbGenre.Location = new System.Drawing.Point(78, 314);
+            this.cmbGenre.Name = "cmbGenre";
+            this.cmbGenre.Size = new System.Drawing.Size(193, 21);
+            this.cmbGenre.TabIndex = 29;
             // 
             // button2
             // 
@@ -758,94 +915,6 @@
             this.txtFirstName.Enter += new System.EventHandler(this.txtFirstName_Enter);
             this.txtFirstName.Leave += new System.EventHandler(this.txtFirstName_Leave);
             // 
-            // pnlDashBoardCompo
-            // 
-            this.pnlDashBoardCompo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlDashBoardCompo.AutoScroll = true;
-            this.pnlDashBoardCompo.BackColor = System.Drawing.Color.GhostWhite;
-            this.pnlDashBoardCompo.Controls.Add(this.panel6);
-            this.pnlDashBoardCompo.Location = new System.Drawing.Point(0, 175);
-            this.pnlDashBoardCompo.Name = "pnlDashBoardCompo";
-            this.pnlDashBoardCompo.Size = new System.Drawing.Size(984, 456);
-            this.pnlDashBoardCompo.TabIndex = 9;
-            this.pnlDashBoardCompo.Visible = false;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.White;
-            this.panel6.Controls.Add(this.pictureBox2);
-            this.panel6.Controls.Add(this.pictureBox7);
-            this.panel6.Controls.Add(this.pictureBox8);
-            this.panel6.Controls.Add(this.pictureBox9);
-            this.panel6.Controls.Add(this.pictureBox10);
-            this.panel6.Controls.Add(this.pictureBox11);
-            this.panel6.Location = new System.Drawing.Point(0, 638);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(964, 175);
-            this.panel6.TabIndex = 24;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources._879bd6e5542b9d66a78d29f476877f27;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox2.Location = new System.Drawing.Point(305, 86);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(79, 70);
-            this.pictureBox2.TabIndex = 20;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources.BC_BestPlace_V_gry_pos_Converted;
-            this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox7.Location = new System.Drawing.Point(401, 86);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(79, 70);
-            this.pictureBox7.TabIndex = 19;
-            this.pictureBox7.TabStop = false;
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources.Logo_BookHub;
-            this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox8.Location = new System.Drawing.Point(689, 86);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(79, 70);
-            this.pictureBox8.TabIndex = 18;
-            this.pictureBox8.TabStop = false;
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources.SANCTUM_BOOKS_LOGO__2_;
-            this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox9.Location = new System.Drawing.Point(593, 86);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(79, 70);
-            this.pictureBox9.TabIndex = 17;
-            this.pictureBox9.TabStop = false;
-            // 
-            // pictureBox10
-            // 
-            this.pictureBox10.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources._5dd1fe29ad255693e072fd6aefaa03c6;
-            this.pictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox10.Location = new System.Drawing.Point(497, 86);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(79, 70);
-            this.pictureBox10.TabIndex = 16;
-            this.pictureBox10.TabStop = false;
-            // 
-            // pictureBox11
-            // 
-            this.pictureBox11.BackgroundImage = global::BookCrawler_2016_ITRW_Mongoshef.Properties.Resources.MongoChefIcon2;
-            this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox11.Location = new System.Drawing.Point(792, 35);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(135, 121);
-            this.pictureBox11.TabIndex = 15;
-            this.pictureBox11.TabStop = false;
-            // 
             // pnlHome
             // 
             this.pnlHome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -1075,6 +1144,7 @@
             this.btnAccept.Size = new System.Drawing.Size(95, 69);
             this.btnAccept.TabIndex = 8;
             this.btnAccept.TabStop = false;
+            this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             this.btnAccept.MouseLeave += new System.EventHandler(this.btnAccept_MouseLeave);
             this.btnAccept.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnAccept_MouseMove);
             // 
@@ -1145,50 +1215,82 @@
             this.pictureBox5.TabIndex = 1;
             this.pictureBox5.TabStop = false;
             // 
-            // comboBox1
+            // chrtPageNums
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Art",
-            "Biblography",
-            "Business",
-            "Children\'s",
-            "Crime",
-            "Ebooks",
-            "Religion"});
-            this.comboBox1.Location = new System.Drawing.Point(78, 314);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(193, 21);
-            this.comboBox1.TabIndex = 29;
+            chartArea4.Name = "ChartArea1";
+            this.chrtPageNums.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chrtPageNums.Legends.Add(legend4);
+            this.chrtPageNums.Location = new System.Drawing.Point(18, -1);
+            this.chrtPageNums.Name = "chrtPageNums";
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "BookNames";
+            this.chrtPageNums.Series.Add(series4);
+            this.chrtPageNums.Size = new System.Drawing.Size(710, 331);
+            this.chrtPageNums.TabIndex = 25;
+            this.chrtPageNums.Text = "chart1";
             // 
-            // comboBox2
+            // chrtRatings
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "New Releases",
-            "Most Read"});
-            this.comboBox2.Location = new System.Drawing.Point(78, 355);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(193, 21);
-            this.comboBox2.TabIndex = 30;
+            chartArea3.Name = "ChartArea1";
+            this.chrtRatings.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chrtRatings.Legends.Add(legend3);
+            this.chrtRatings.Location = new System.Drawing.Point(12, 356);
+            this.chrtRatings.Name = "chrtRatings";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chrtRatings.Series.Add(series3);
+            this.chrtRatings.Size = new System.Drawing.Size(716, 390);
+            this.chrtRatings.TabIndex = 27;
             // 
-            // label4
+            // chrtBookStars
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(36, 317);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(36, 13);
-            this.label4.TabIndex = 31;
-            this.label4.Text = "Genre";
+            chartArea2.Name = "ChartArea1";
+            this.chrtBookStars.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chrtBookStars.Legends.Add(legend2);
+            this.chrtBookStars.Location = new System.Drawing.Point(699, 12);
+            this.chrtBookStars.Name = "chrtBookStars";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Point;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            series2.YValuesPerPoint = 2;
+            this.chrtBookStars.Series.Add(series2);
+            this.chrtBookStars.Size = new System.Drawing.Size(570, 323);
+            this.chrtBookStars.TabIndex = 28;
+            this.chrtBookStars.Text = "Book Stars";
             // 
-            // label5
+            // btnGenerate
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(36, 356);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 13);
-            this.label5.TabIndex = 32;
-            this.label5.Text = "Status";
+            this.btnGenerate.Location = new System.Drawing.Point(259, 146);
+            this.btnGenerate.Name = "btnGenerate";
+            this.btnGenerate.Size = new System.Drawing.Size(75, 23);
+            this.btnGenerate.TabIndex = 29;
+            this.btnGenerate.Text = "Generate";
+            this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
+            // 
+            // chrtReview
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chrtReview.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chrtReview.Legends.Add(legend1);
+            this.chrtReview.Location = new System.Drawing.Point(721, 356);
+            this.chrtReview.Name = "chrtReview";
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chrtReview.Series.Add(series1);
+            this.chrtReview.Size = new System.Drawing.Size(570, 379);
+            this.chrtReview.TabIndex = 29;
+            this.chrtReview.Text = "chart1";
             // 
             // Form1
             // 
@@ -1207,6 +1309,14 @@
             this.Text = "Mongo-Shef";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.pnlDashBoard.ResumeLayout(false);
+            this.pnlDashBoardCompo.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
@@ -1239,14 +1349,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnEditUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdminAddUser)).EndInit();
-            this.pnlDashBoardCompo.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.pnlHome.ResumeLayout(false);
             this.pnlSignIn.ResumeLayout(false);
             this.pnlSignIn.PerformLayout();
@@ -1262,6 +1364,10 @@
             this.pnlAddNewUser.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAccept)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtPageNums)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtRatings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtBookStars)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtReview)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1352,8 +1458,13 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbStatus;
+        private System.Windows.Forms.ComboBox cmbGenre;
+        private System.Windows.Forms.Button btnGenerate;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chrtBookStars;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chrtRatings;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chrtPageNums;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chrtReview;
     }
 }
 
